@@ -9,10 +9,20 @@
 
 
 
-test pdo connection fichier index.php:
+test pdo connection fichier index.php: (<?php xx ?>)
 # $dsn ='mysql:host=db;dbname=db_symfony;port=3306;charset=utf8mb4;
 # $pdo = new PDO($dsn, 'user_symfony', 'xxx'); 
 
 installer symfony dans contenair
-# docker exec -it apache2 bash
 # voir: https://github.com/ARFP/DWWM_2503/blob/develop/symfony/README.md
+
+# docker exec -it apache2 bash
+# composer require symfony/maker-bundle --dev
+
+xxx/config/route/api_platform.yaml:
+# commenter
+# prefix: /api
+
+xxx/config/packages/api_platform.yaml:
+# modifier le visu page api
+# show_webby: false (hidde spider)
