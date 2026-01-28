@@ -1,0 +1,48 @@
+name: darkb1967-symfony-2503
+services: 
+  db:
+    image: mariadb:11 #10.8.5
+    container_name: darkb1967-symfony-2503-mysql
+    restart: always #unless-stop
+    ports: ['3310:3306']
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: db_myapi
+      MYSQL_USER: user 
+      MYSQL_PASSWORD: user
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+      MYSQL_ROOT_PASSWORD: root
+
+  web:
+    # image: "php:8.4-apache"
+    # image: "php:8.4-alpine"
+    container_name: darkb1967-symfony-2503-apache2
+    build: .
+    restart: always #unless-stop
+    depends_on: ['db'] #démarrage apres que db soit démarrer
+    ports: ['8000:80']
+    links: ['db:db'] # communication entre les 2
+    volumes:
+      - './myapi/:/var/www/html' # chemin relatif : './src/var/html'
+    environment:
+      MYSQL_DB_HOST: db
+      MYSQL_DATABASE: db_myapi
+      MYSQL_USER: user 
+      MYSQL_PASSWORD: user
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2
+    container_name: darkb1967-symfony-2503-phpmyadmin
+    restart: always
+    depends_on: ['db']
+    ports: ['1200:80']
+    links: ['db:db']
+    environment:
+      - MYSQL_DB_HOST=db
+      - MYSQL_USER=user 
+      - MYSQL_PASSWORD=user
+
+
+volumes:
+  db_data: {}
