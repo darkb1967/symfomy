@@ -11,4 +11,4 @@
 
 test pdo connection fichier index.php:
 # $dsn ='mysql:host=db;dbname=db_symfony;port=3306;charset=utf8mb4;
-# $pdo = new PDO($dsn, 'user_symfony', 'azer'); 
+# $pdo = new PDO($dsn, 'user_symfony', 'xxx'); 

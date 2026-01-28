@@ -15,10 +15,12 @@ services:
       MYSQL_ROOT_PASSWORD: root
 
   web:
-    # image: "php:8.4-apache"
-    # image: "php:8.4-alpine"
+      # image: "php:8.4-apache"
+      # image: "php:8.4-alpine"
     container_name: darkb1967-symfony-2503-apache2
     build: .
+      # context: .
+      # dockerfile: dockerfile
     restart: always #unless-stop
     depends_on: ['db'] #démarrage apres que db soit démarrer
     ports: ['8000:80']
