@@ -16,11 +16,11 @@ class Bookmark
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, unique: true)]
-    private ?string $url = null;
-
     #[ORM\Column(length: 50, name:"titre", columnDefinition:"char(50) not null")]
     private ?string $title = null;
+
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $url = null;
 
     public function getId(): ?int
     {
