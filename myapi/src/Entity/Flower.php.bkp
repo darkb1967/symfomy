@@ -15,13 +15,16 @@ class Flower
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 50)]
     private ?string $name = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $color = null;
 
     #[ORM\ManyToOne(inversedBy: 'flowers')]
     #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Column(options: ['default' => 1])]
     private ?category $category = null;
-
 
     public function getId(): ?int
     {
@@ -36,6 +39,18 @@ class Flower
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): static
+    {
+        $this->color = $color;
 
         return $this;
     }
